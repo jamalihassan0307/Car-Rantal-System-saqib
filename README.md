@@ -46,3 +46,8 @@ A web-based car rental management system that allows users to manage car invento
 - LocalStorage for data persistence
 
 ## File Structure
+
+data.json
+index.html
+style.css
+script.js
