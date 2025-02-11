@@ -24,7 +24,7 @@
 
 # 📌 Overview
 
-Car Rental System is a modern web application that provides a seamless platform for managing car rentals. It offers an intuitive interface for both administrators and customers to handle car bookings, returns, and fleet management.
+Car Rental System is a modern web app for seamless car bookings, returns, and fleet management.
 
 # 🛠️ Tech Stack
 
