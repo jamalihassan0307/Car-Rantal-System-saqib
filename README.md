@@ -77,7 +77,7 @@ Car Rental System is a modern web application that provides a seamless platform 
 ### Rent Car
 
 <div align="center">
-  <img src="screenshots/rent_car.png" alt="Rent Car Process" width="800"/>
+  <img src="screenshots/rant_car.png" alt="Rent Car Process" width="800"/>
 </div>
 
 ## 🔑 Key Features
