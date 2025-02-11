@@ -1,132 +1,142 @@
 <!DOCTYPE html>
 <html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Car Rental Dashboard</title>
-    <link rel="stylesheet" href="styles.css">
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css">
-</head>
-<body>
+    <link rel="stylesheet" href="styles.css" />
+    <link
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css"
+    />
+  </head>
+  <body>
     <div class="layout">
-        <div id="sidebarContainer"></div>
-        <main class="main-content">
-            <div class="dashboard">
-                <nav class="dashboard-nav">
-                    <h1>Car Rental Dashboard</h1>
-                    <div class="search-filter">
-                        <button id="addCarBtn" class="add-car-btn"><i class="fas fa-plus"></i> Add New Car</button>
-                        <input type="text" id="searchInput" placeholder="Search car name..." onchange="searchByName(this.value)">
-                        <select id="statusFilter">
-                            <option value="all">All Cars</option>
-                            <option value="available">Available</option>
-                            <option value="rented">Rented</option>
-                        </select>
-                    </div>
-                </nav>
-                
-                <div class="cars-container" id="carsContainer">
-                    <!-- Cars will be dynamically added here -->
-                </div>
+      <div id="sidebarContainer"></div>
+      <main class="main-content">
+        <div class="dashboard">
+          <nav class="dashboard-nav">
+            <h1>Car Rental Dashboard</h1>
+            <div class="search-filter">
+              <button id="addCarBtn" class="add-car-btn">
+                <i class="fas fa-plus"></i> Add New Car
+              </button>
+              <input
+                type="text"
+                id="searchInput"
+                placeholder="Search car name..."
+                onchange="searchByName(this.value)"
+              />
+              <select id="statusFilter">
+                <option value="all">All Cars</option>
+                <option value="available">Available</option>
+                <option value="rented">Rented</option>
+              </select>
             </div>
-        </main>
+          </nav>
+
+          <div class="cars-container" id="carsContainer">
+            <!-- Cars will be dynamically added here -->
+          </div>
+        </div>
+      </main>
     </div>
 
     <!-- Car Details Modal -->
     <div id="carModal" class="modal">
-        <div class="modal-content">
-            <span class="close">&times;</span>
-            <div id="carDetails"></div>
-        </div>
+      <div class="modal-content">
+        <span class="close">&times;</span>
+        <div id="carDetails"></div>
+      </div>
     </div>
 
     <!-- Add New Car Modal -->
     <div id="addCarModal" class="modal">
-        <div class="modal-content">
-            <span class="close">&times;</span>
-            <h2>Add New Car</h2>
-            <form id="addCarForm">
-                <div class="form-group">
-                    <label for="carName">Car Name:</label>
-                    <input type="text" id="carName" required>
-                </div>
-                <div class="form-group">
-                    <label for="carModel">Model:</label>
-                    <input type="text" id="carModel" required>
-                </div>
-                <div class="form-group">
-                    <label for="carImage">Image URL:</label>
-                    <input type="url" id="carImage" required>
-                </div>
-                <div class="form-group">
-                    <label for="carPrice">Price per Day:</label>
-                    <input type="text" id="carPrice" required>
-                </div>
-                <div class="form-group">
-                    <label for="carStatus">Status:</label>
-                    <select id="carStatus" required>
-                        <option value="available">Available</option>
-                        <option value="rented">Rented</option>
-                    </select>
-                </div>
-                <div class="form-group">
-                    <label for="carFeatures">Features (comma-separated):</label>
-                    <input type="text" id="carFeatures" required>
-                </div>
-                <div class="form-group">
-                    <label for="carDescription">Description:</label>
-                    <textarea id="carDescription" rows="3" required></textarea>
-                </div>
-                <button type="submit">Add Car</button>
-            </form>
-        </div>
+      <div class="modal-content">
+        <span class="close">&times;</span>
+        <h2>Add New Car</h2>
+        <form id="addCarForm">
+          <div class="form-group">
+            <label for="carName">Car Name:</label>
+            <input type="text" id="carName" required />
+          </div>
+          <div class="form-group">
+            <label for="carModel">Model:</label>
+            <input type="text" id="carModel" required />
+          </div>
+          <div class="form-group">
+            <label for="carImage">Image URL:</label>
+            <input type="url" id="carImage" required />
+          </div>
+          <div class="form-group">
+            <label for="carPrice">Price per Day:</label>
+            <input type="text" id="carPrice" required />
+          </div>
+          <div class="form-group">
+            <label for="carStatus">Status:</label>
+            <select id="carStatus" required>
+              <option value="available">Available</option>
+              <option value="rented">Rented</option>
+            </select>
+          </div>
+          <div class="form-group">
+            <label for="carFeatures">Features (comma-separated):</label>
+            <input type="text" id="carFeatures" required />
+          </div>
+          <div class="form-group">
+            <label for="carDescription">Description:</label>
+            <textarea id="carDescription" rows="3" required></textarea>
+          </div>
+          <button type="submit">Add Car</button>
+        </form>
+      </div>
     </div>
 
     <!-- Edit Car Modal -->
     <div id="editCarModal" class="modal">
-        <div class="modal-content">
-            <span class="close">&times;</span>
-            <h2>Edit Car</h2>
-            <form id="editCarForm">
-                <input type="hidden" id="editCarId">
-                <div class="form-group">
-                    <label for="editCarName">Car Name:</label>
-                    <input type="text" id="editCarName" required>
-                </div>
-                <div class="form-group">
-                    <label for="editCarModel">Model:</label>
-                    <input type="text" id="editCarModel" required>
-                </div>
-                <div class="form-group">
-                    <label for="editCarImage">Image URL:</label>
-                    <input type="url" id="editCarImage" required>
-                </div>
-                <div class="form-group">
-                    <label for="editCarPrice">Price per Day:</label>
-                    <input type="text" id="editCarPrice" required>
-                </div>
-                <div class="form-group">
-                    <label for="editCarStatus">Status:</label>
-                    <select id="editCarStatus" required>
-                        <option value="available">Available</option>
-                        <option value="rented">Rented</option>
-                    </select>
-                </div>
-                <div class="form-group">
-                    <label for="editCarFeatures">Features (comma-separated):</label>
-                    <input type="text" id="editCarFeatures" required>
-                </div>
-                <div class="form-group">
-                    <label for="editCarDescription">Description:</label>
-                    <textarea id="editCarDescription" rows="3" required></textarea>
-                </div>
-                <button type="submit">Update Car</button>
-            </form>
-        </div>
+      <div class="modal-content">
+        <span class="close">&times;</span>
+        <h2>Edit Car</h2>
+        <form id="editCarForm">
+          <input type="hidden" id="editCarId" />
+          <div class="form-group">
+            <label for="editCarName">Car Name:</label>
+            <input type="text" id="editCarName" required />
+          </div>
+          <div class="form-group">
+            <label for="editCarModel">Model:</label>
+            <input type="text" id="editCarModel" required />
+          </div>
+          <div class="form-group">
+            <label for="editCarImage">Image URL:</label>
+            <input type="url" id="editCarImage" required />
+          </div>
+          <div class="form-group">
+            <label for="editCarPrice">Price per Day:</label>
+            <input type="text" id="editCarPrice" required />
+          </div>
+          <div class="form-group">
+            <label for="editCarStatus">Status:</label>
+            <select id="editCarStatus" required>
+              <option value="available">Available</option>
+              <option value="rented">Rented</option>
+            </select>
+          </div>
+          <div class="form-group">
+            <label for="editCarFeatures">Features (comma-separated):</label>
+            <input type="text" id="editCarFeatures" required />
+          </div>
+          <div class="form-group">
+            <label for="editCarDescription">Description:</label>
+            <textarea id="editCarDescription" rows="3" required></textarea>
+          </div>
+          <button type="submit">Update Car</button>
+        </form>
+      </div>
     </div>
 
     <script src="sidebar.js"></script>
     <script src="navigation.js"></script>
     <script src="dashboard.js"></script>
-</body>
-</html> 
+  </body>
+</html>
